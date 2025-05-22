@@ -1,51 +1,62 @@
-# Diabetic Retinopathy Detection using Ensemble Deep Learning
+# Diabetic Retinopathy Detection using Deep Learning
 
-## 🩺 Problem Statement  
-Diabetic Retinopathy (DR) is a leading cause of vision loss in the global working-age population. Early detection and treatment can significantly reduce the risk of blindness. However, manual screening is time-consuming, expensive, and subject to human error.  
-This project aims to automate the detection of diabetic retinopathy from retinal images using deep learning models, improving screening efficiency and diagnostic accuracy.
+## 🩺 Problem Statement
 
-## 📊 Dataset  
-- **Source**: [APTOS 2019 Blindness Detection Challenge (Kaggle)](https://www.kaggle.com/competitions/aptos2019-blindness-detection)
-- The dataset consists of high-resolution retinal fundus images labeled across five DR severity classes:
-  - 0: No DR  
-  - 1: Mild  
-  - 2: Moderate  
-  - 3: Severe  
-  - 4: Proliferative DR  
+Diabetic Retinopathy (DR) is one of the leading causes of blindness among the working-age population. Early detection and treatment are crucial to prevent severe vision loss. Manual grading of retinal images is time-consuming and prone to subjectivity. Automatic retinal image analysis has become a vital screening tool, helping to reduce both the workload of ophthalmologists and the cost of diagnosis.
 
-## 🧠 Model Architecture  
-The project uses an **ensemble of three CNN architectures** to enhance prediction performance:
-- EfficientNetB4  
-- EfficientNetB5  
-- ResNet152V2  
+This project leverages deep learning techniques to automatically detect Diabetic Retinopathy from retinal fundus images. Our goal is to build an effective and scalable model that can assist in early DR diagnosis and be deployed in large-scale screening programs.
 
-Each model is pretrained on ImageNet and fine-tuned on the APTOS dataset. A **max-voting ensemble** strategy is used to combine predictions from all three models.
+---
 
-## ⚙️ Preprocessing  
-- Image resizing to 380×380 pixels  
-- Pixel value normalization  
-- Data augmentation (optional for training phase)  
-- One-hot encoding of class labels  
+## 📁 Dataset
 
-## 🖥️ Deployment  
-A lightweight, interactive **Gradio web interface** was developed to:
-- Accept retinal image uploads
-- Display the predicted DR class with associated confidence
-- Run entirely client-side for demonstration purposes
+**Source**: [APTOS 2019 Blindness Detection Dataset - Kaggle](https://www.kaggle.com/competitions/aptos2019-blindness-detection/data)
 
-## ✅ Features  
-- Robust ensemble classification using pre-trained deep models  
-- Interactive image prediction with Gradio  
-- Clean modular code with custom layer support  
-- Max-voting strategy to increase prediction robustness  
+The dataset consists of high-resolution retina images taken under a variety of imaging conditions. Each image is labeled with a severity grade of Diabetic Retinopathy on a scale from 0 to 4:
 
-## 🔧 Requirements  
-- Python 3.7+  
-- TensorFlow / Keras  
-- OpenCV  
-- Gradio  
-- NumPy, Pandas, PIL  
+- 0: No DR
+- 1: Mild
+- 2: Moderate
+- 3: Severe
+- 4: Proliferative DR
 
-Install dependencies using:
+---
+
+## 🧠 Approach
+
+We adopt a deep learning-based approach for the multi-class classification of Diabetic Retinopathy severity levels.
+
+### 🔧 Architecture Overview
+
+- **Transfer Learning**: We leverage pre-trained convolutional neural networks (CNNs) such as **EfficientNet**, **ResNet**, and **InceptionV3** as the backbone of our models. These architectures are fine-tuned on the APTOS dataset to adapt to the task of retinal image classification.
+- **Image Preprocessing**: Includes resizing, normalization, and image enhancement techniques (e.g., CLAHE, Gaussian blurring).
+- **Data Augmentation**: Random rotations, horizontal/vertical flips, brightness and contrast adjustment to increase dataset variability and prevent overfitting.
+- **Loss Function**: 
+  - `Categorical Crossentropy` for balanced training.
+  - `Focal Loss` to handle class imbalance more effectively.
+- **Optimizer**: Adam / SGD with learning rate scheduling.
+- **Evaluation Metrics**:
+  - **Quadratic Weighted Kappa (QWK)** – preferred metric for DR detection competitions.
+  - **Accuracy**, **Precision**, **Recall**, and **Confusion Matrix** for performance insights.
+
+---
+
+## 🛠️ Technologies Used
+
+- Python
+- TensorFlow / PyTorch
+- OpenCV
+- NumPy / Pandas
+- Matplotlib / Seaborn
+- Kaggle Notebooks (for training environment)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure the following packages are installed:
+
 ```bash
-pip install -r requirements.txt
+pip install numpy pandas opencv-python matplotlib seaborn scikit-learn tensorflow
