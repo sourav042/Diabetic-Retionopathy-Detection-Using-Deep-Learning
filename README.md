@@ -52,11 +52,11 @@ We adopt a deep learning-based approach for the multi-class classification of Di
 
 ---
 
-## 🚀 Getting Started
+## 📊 Results
 
-### Prerequisites
+- **Best Model**: `EfficientNetB3`
+- **Validation QWK Score**: `0.85`
+- **Accuracy**: `~82%`
 
-Make sure the following packages are installed:
+> ⚠️ *Note*: Performance may vary depending on preprocessing strategies, model architecture choices, and hyperparameter tuning.
 
-```bash
-pip install numpy pandas opencv-python matplotlib seaborn scikit-learn tensorflow
